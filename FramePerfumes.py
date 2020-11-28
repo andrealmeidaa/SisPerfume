@@ -7,7 +7,7 @@ import db
 # Implementing FramePerfumesGrid
 class FramePerfumes(guiperfumes.FramePerfumes):
 	def __init__( self, parent ):
-		guiperfumes.FramePerfumesGrid.__init__( self, parent )
+		guiperfumes.FramePerfumes.__init__( self, parent )
 	#Essa método cria uma linha vazia na tabela para permitir que o usuário realização a edição
 	def adicionarLinha( self, event ):
 		self.criarLinha()
@@ -25,6 +25,8 @@ class FramePerfumes(guiperfumes.FramePerfumes):
 			wx.MessageBox(message="Registro(s) Salvo(s) com Sucesso",caption="SysPerfume",style=wx.OK|wx.ICON_INFORMATION)
 		else:
 			wx.MessageBox(message="Erro ao Salvar Perfumes",caption="SysPerfume",style=wx.OK|wx.ICON_ERROR)
+		#Recarrega a tabela
+		self.exibirTabela()
 	#Essa função atualiza o grid de perfumes
 	def exibirTabela(self):
 		perfumes=db.listarPerfumes() #Recupera a lista de perfumes
