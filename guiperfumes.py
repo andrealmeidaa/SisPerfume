@@ -353,7 +353,7 @@ class FramePerfumesGrid ( wx.Frame ):
 		self.Centre( wx.BOTH )
 
 		# Connect Events
-		self.Bind( wx.EVT_HIBERNATE, self.fecharFrame )
+		self.Bind( wx.EVT_CLOSE, self.fecharFrame )
 		self.Bind( wx.EVT_SHOW, self.exibirFrame )
 		self.btnAdicionar.Bind( wx.EVT_BUTTON, self.adicionarLinha )
 		self.btnSalvar.Bind( wx.EVT_BUTTON, self.salvarPerfume )
