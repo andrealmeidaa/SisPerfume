@@ -4,7 +4,7 @@ import wx
 import guiperfumes
 
 # Implementing FrameVolumes
-class ProjSisPerfumesFrameVolumes( guiperfumes.FrameVolumes ):
+class FrameVolumes(guiperfumes.FrameVolumes):
 	def __init__( self, parent ):
 		guiperfumes.FrameVolumes.__init__( self, parent )
 

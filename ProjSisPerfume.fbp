@@ -715,7 +715,7 @@
                 </object>
             </object>
         </object>
-        <object class="Frame" expanded="1">
+        <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
@@ -734,7 +734,7 @@
             <property name="name">FramePrincipal</property>
             <property name="pos"></property>
             <property name="size">903,561</property>
-            <property name="style">wxDEFAULT_FRAME_STYLE</property>
+            <property name="style">wxDEFAULT_FRAME_STYLE|wxMAXIMIZE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title">Sistema de Gestão de Perfumes</property>
             <property name="tooltip"></property>
@@ -743,7 +743,7 @@
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
             <event name="OnClose">fecharFramePrincipal</event>
-            <object class="wxMenuBar" expanded="1">
+            <object class="wxMenuBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -765,7 +765,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Cadastros Básicos</property>
                     <property name="name">m_menu1</property>
                     <property name="permission">protected</property>
@@ -825,7 +825,7 @@
                         <event name="OnMenuSelection">abrirVolumes</event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Perfumes</property>
                     <property name="name">m_menu2</property>
                     <property name="permission">protected</property>
@@ -857,7 +857,7 @@
                         <property name="unchecked_bitmap"></property>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Ajuda</property>
                     <property name="name">m_menu3</property>
                     <property name="permission">protected</property>
@@ -891,7 +891,7 @@
                 </object>
             </object>
         </object>
-        <object class="Frame" expanded="1">
+        <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
@@ -907,12 +907,12 @@
             <property name="id">wxID_ANY</property>
             <property name="maximum_size"></property>
             <property name="minimum_size"></property>
-            <property name="name">FramePerfumesGrid</property>
+            <property name="name">FramePerfumes</property>
             <property name="pos"></property>
             <property name="size">1032,300</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
-            <property name="title">Perfumes - Formato Grid</property>
+            <property name="title">Perfumes</property>
             <property name="tooltip"></property>
             <property name="window_extra_style"></property>
             <property name="window_name"></property>

@@ -1,8 +1,8 @@
 import wx
-from ProjSisPerfumesFramePrincipal import ProjSisPerfumesFramePrincipal
+from FramePrincipal import FramePrincipal
 if __name__ == '__main__':
     app=wx.App()
-    framePrincipal=ProjSisPerfumesFramePrincipal(None)
+    framePrincipal=FramePrincipal(None)
     framePrincipal.Show(True)
     app.MainLoop()
 

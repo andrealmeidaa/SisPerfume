@@ -4,9 +4,9 @@ import wx
 import guiperfumes
 
 # Implementing FramePerfumesGrid
-class ProjSisPerfumesFramePerfumesGrid( guiperfumes.FramePerfumesGrid ):
+class FramePerfumes(guiperfumes.FramePerfumes):
 	def __init__( self, parent ):
-		guiperfumes.FramePerfumesGrid.__init__( self, parent )
+		guiperfumes.FramePerfumes.__init__( self, parent )
 
 	# Handlers for FramePerfumesGrid events.
 	def exibirFrame( self, event ):

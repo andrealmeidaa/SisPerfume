@@ -4,7 +4,7 @@ import wx
 import guiperfumes
 
 # Implementing FrameMarca
-class ProjSisPerfumesFrameMarca( guiperfumes.FrameMarca ):
+class FrameMarca(guiperfumes.FrameMarca):
 	def __init__( self, parent ):
 		guiperfumes.FrameMarca.__init__( self, parent )
 

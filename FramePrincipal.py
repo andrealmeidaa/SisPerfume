@@ -2,11 +2,11 @@
 
 import wx
 import guiperfumes
-from ProjSisPerfumesFrameMarca import ProjSisPerfumesFrameMarca
-from ProjSisPerfumesFramePerfumesGrid import ProjSisPerfumesFramePerfumesGrid
+from FrameMarca import FrameMarca
+from FramePerfumes import FramePerfumes
 
 # Implementing FramePrincipal
-class ProjSisPerfumesFramePrincipal( guiperfumes.FramePrincipal ):
+class FramePrincipal(guiperfumes.FramePrincipal):
 	def __init__( self, parent ):
 		guiperfumes.FramePrincipal.__init__( self, parent )
 		self.frameMarca=None
@@ -18,7 +18,7 @@ class ProjSisPerfumesFramePrincipal( guiperfumes.FramePrincipal ):
 
 	def abrirMarca( self, event ):
 		if not self.frameMarca:
-			self.frameMarca=ProjSisPerfumesFrameMarca(self)
+			self.frameMarca=FrameMarca(self)
 		self.frameMarca.Show(True)
 
 	def abrirFixacoes( self, event ):
@@ -31,7 +31,7 @@ class ProjSisPerfumesFramePrincipal( guiperfumes.FramePrincipal ):
 
 	def abrirPerfume( self, event ):
 		if not self.framePerfume:
-			self.framePerfume=ProjSisPerfumesFramePerfumesGrid(self)
+			self.framePerfume=FramePerfumes(self)
 		self.framePerfume.Show(True)
 
 	def fecharApp( self, event ):
