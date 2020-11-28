@@ -2,24 +2,65 @@
 
 import wx
 import guiperfumes
+import db
 
 # Implementing FramePerfumesGrid
 class FramePerfumes(guiperfumes.FramePerfumes):
 	def __init__( self, parent ):
-		guiperfumes.FramePerfumes.__init__( self, parent )
-
-	# Handlers for FramePerfumesGrid events.
-	def exibirFrame( self, event ):
-		# TODO: Implement exibirFrame
-		pass
-
+		guiperfumes.FramePerfumesGrid.__init__( self, parent )
+	#Essa método cria uma linha vazia na tabela para permitir que o usuário realização a edição
 	def adicionarLinha( self, event ):
-		# TODO: Implement adicionarLinha
-		pass
-
+		self.criarLinha()
+	'''
+		Esse método é acionado quando o botão Salvar é pressionado
+	'''
 	def salvarPerfume( self, event ):
-		# TODO: Implement salvarPerfume
-		pass
+		perfumes=[]#Cria uma lista vazia de perfumes
+		for i in range(0,self.gridPerfumes.GetNumberRows()): #Percorre todas a linhas do grid
+			perfumes.append([]) #em Cada linha adicionamos uma lista vazia, para que possamos adicionar os dados do perfume
+			for j in range(0,self.gridPerfumes.GetNumberCols()): #Percorre todas as colunas da tabela
+				perfumes[i].append(self.gridPerfumes.GetCellValue(col=j,row=i)) #Adiciona na lista de perfumes, cada coluna com as informações exibidas
+		status,message=db.salvarPerfumes(listaPerfumes=perfumes) #Chama a função salvarPerfumes, passando a lista de perfumes
+		if status:
+			wx.MessageBox(message="Registro(s) Salvo(s) com Sucesso",caption="SysPerfume",style=wx.OK|wx.ICON_INFORMATION)
+		else:
+			wx.MessageBox(message="Erro ao Salvar Perfumes",caption="SysPerfume",style=wx.OK|wx.ICON_ERROR)
+	#Essa função atualiza o grid de perfumes
+	def exibirTabela(self):
+		perfumes=db.listarPerfumes() #Recupera a lista de perfumes
+		if self.gridPerfumes.GetNumberRows()!=0: #Se o grid não for vazio, delete todas as linhas
+			self.gridPerfumes.DeleteRows(pos=0,numRows=self.gridPerfumes.GetNumberRows())
+		for perfume in perfumes: #Para cada perfume da minha lista, crie uma nova linha, passando os dados retornados
+			self.criarLinha(id_perfume=perfume[0],nome_perfume=perfume[1],quantidade=perfume[2],volume=perfume[3],marca=perfume[4],fixacao=perfume[5])
+	def exibirFrame( self, event ):
+		self.exibirTabela() #Ao abrir a janela, exiba a lista de perfumes
+	'''
+	Esse método insere uma nova linha no grid. Caso o parâmetro id_perfume seja None, ele insere uma linha em branco
+	'''
+	def criarLinha(self,id_perfume=None,nome_perfume=None,quantidade=None,marca=None,fixacao=None,volume=None):
+		self.gridPerfumes.AppendRows(1) #Adiciona uma linha
+		linha=self.gridPerfumes.GetNumberRows()-1#Pega qual o número da linha estamos inserindo
+		self.gridPerfumes.SetReadOnly(linha,0,True) #Define que a primeira coluna(ID) é do tipo somente leitura
+		self.gridPerfumes.SetCellEditor(linha,2,wx.grid.GridCellNumberEditor(min=1,max=1000)) #Define que a coluna quantidade só pode receber inteiros entre 1 e 1000
+		'''
+			Aqui usamos um recurso avançado do componente wxGrid. Especificamente, as colunas Volume, Marca e Fixacoes,
+			precisam apresentar o conteúdos das respectivas tabelas, para que o usuário escolha qual quer vincular ao perfume. 
+			No caso específico do Volume, precisamos informar quais as opções(choices) o usuário poderá escolher. Essas opções são formadas por
+			uma lista de strings(texto), que nesse caso são os dados da coluna nome da tabela Volume.
+		'''
+		self.gridPerfumes.SetCellEditor(linha,3,wx.grid.GridCellChoiceEditor(choices=db.listarVolumeNome()))
+		self.gridPerfumes.SetCellEditor(linha, 4,
+										wx.grid.GridCellChoiceEditor(choices=db.listarMarcaNome()))
+		self.gridPerfumes.SetCellEditor(linha, 5,
+										wx.grid.GridCellChoiceEditor(choices=db.listarFixacaoNome()))
+		if id_perfume: #Se o id foi passado, significa que podemos atribuir o conteúdo as células do grid
+			self.gridPerfumes.SetCellValue(linha,0,str(id_perfume))
+			self.gridPerfumes.SetCellValue(linha,1, nome_perfume)
+			self.gridPerfumes.SetCellValue(linha, 2, str(quantidade))
+			self.gridPerfumes.SetCellValue(linha, 3, volume)
+			self.gridPerfumes.SetCellValue(linha,4, marca)
+			self.gridPerfumes.SetCellValue(linha,5, fixacao)
+
 	def fecharFrame( self, event ):
 		self.Show(False)
 
